@@ -10,7 +10,6 @@ const uncss = require('gulp-uncss');
 const concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 // HTML
-const htmlValidator = require('gulp-w3c-html-validator');
 const prettify = require('gulp-html-prettify');
 const extender = require('gulp-html-extend');
 
@@ -38,7 +37,7 @@ const configuration = {
     ],
     css: [
       'scss/style.scss',
-      'html/components/**/**/*.scss'
+      'html/components/**/*.scss'
     ]
   },
   folders: {
@@ -72,12 +71,6 @@ const copyFolder = () => {
 }
 
 const html = {
-  validate() {
-    return src(configuration.folders.demo + '**/*' + configuration.extension.html)
-      .pipe(htmlValidator({skipWarnings: true}))
-      .pipe(htmlValidator.reporter())
-      .pipe(connect.reload());
-  },
   prettify() {
     return src(configuration.folders.demo + '*' + configuration.extension.html)
     .pipe(prettify({indent_char: ' ', indent_size: 2}))
@@ -132,18 +125,17 @@ const js = () => {
 
 const watchAssets = () => {
   watch(configuration.folders.src.html + '**/*' + configuration.extension.html, this.html);
-  // watch(configuration.folders.src.css + '**/*' + configuration.extension.sass, css);
-  watch([configuration.folders.src.css + '**/*' + configuration.extension.sass, configuration.assets.css[2]], css);
+  watch([configuration.folders.src.css + '**/*' + configuration.extension.sass, configuration.assets.css[configuration.assets.css.length - 1]], css);
   watch(configuration.folders.src.js + '**/*' + configuration.extension.js, js);
 }
 
-const copyConfigFiles = () => {
-  return src(configuration.configFiles).pipe(dest(configuration.folders.dest));
-}
+const copyConfigFiles = () => (
+  src(configuration.configFiles).pipe(dest(configuration.folders.dest))
+);
 
-const copyScssFiles = () => {
-  return src(configuration.folders.src.css + '**/*').pipe(dest(configuration.folders.dest + configuration.folders.src.css));
-}
+const copyScssFiles = () => (
+  src(configuration.folders.src.css + '**/*').pipe(dest(configuration.folders.dest + configuration.folders.src.css))
+);
 
 exports.html = series(html.prettify, html.extend, html.htmlClean);
 
