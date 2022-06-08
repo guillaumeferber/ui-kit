@@ -1,0 +1,74 @@
+.c-music-pad-group {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: stretch;
+    align-content: stretch;
+    width: 100%;
+    height: 100vh;;
+    background: #fff;
+    z-index: 1;
+}
+.c-music-pad {
+    flex: 1 0 auto;
+    cursor: pointer;
+    overflow: hidden;
+    animation: fadeIn .35s linear 0s normal;
+}
+
+.c-music-pad__effect {
+    display: block;
+    position: absolute;
+    content: '';
+    height: 40px; width: 40px;
+    border-radius: 50%;
+    z-index: 1;
+    opacity: 0;
+    background-color: #fff;
+    animation: explode .5s ease 1 alternate;
+}
+@keyframes explode {
+    from {
+        transform: scaleX(.5) scaleY(.5);
+        opacity: .8;
+    }
+    to {
+        transform: scaleX(4) scaleY(4);
+        opacity: 0;
+    }
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.c-close-button {
+    position: fixed;
+    right: 2em; top: 2em;
+    z-index: 2;
+    a {
+        display: inline-block;
+        height: 32px; width: 32px;
+        border-radius: 50%;
+        text-align: center;
+        font-weight: 700;
+        padding-top: 3px;
+        text-decoration: none;
+        background-color: #fff;
+        transition: all .15s ease;
+        color: #000;
+        box-shadow: 0 2px 7px 3px rgba(grey, .3);
+        &:hover {
+            box-shadow: 0 2px 12px 4px rgba(grey, .3);
+        }
+
+    }
+}

@@ -1,0 +1,41 @@
+.c-breadcrumb {
+    $blue: #10487B;
+    display: flex;
+    align-items: center;
+    list-style-type: none;
+    padding: 5px 0 5px 10px;
+    background-color: #F5F5F5;
+
+    &>li {
+        a {
+            display: flex;
+            font-size: 1.4rem;
+            color: $blue;
+            font-family: var(--sans-serif), Arial, Helvetica, sans-serif;
+        }
+
+        &+li {
+            margin-left: 2rem;
+            position: relative;
+
+            &::before {
+                $height: 75%;
+                position: absolute;
+                top: calc((100% - #{$height}) / 2);
+                left: -1.3rem;
+                content: '';
+                background-color: #777;
+                display: inline-block;
+                height: $height;
+                width: 1px;
+            }
+        }
+    }
+
+    .is-active>a {
+        pointer-events: none;
+        text-decoration: none;
+        color: #777;
+        cursor: default;
+    }
+}

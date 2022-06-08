@@ -1,0 +1,129 @@
+.c-dropdown {
+    display: inline-block;
+    position: relative;
+
+    input[type=checkbox] {
+        position: absolute;
+        left: -9999px;
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    &__menu {
+        --min-width: 0;
+        display: block;
+        position: absolute;
+        left: 0;
+        min-width: var(--min-width);
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        opacity: 0;
+        visibility: hidden;
+        background-color: #fff;
+        box-shadow: 0 1px 7px 0 lightgrey;
+        border: 1px solid rgb(211, 211, 211);
+        z-index: 5;
+
+        a {
+            display: block;
+            padding: 10px 12px;
+            font: 400 1rem/1 var(--sans-serif) Arial, Helvetica Neue, Verdana, sans-serif;
+
+            &:hover {
+                color: inherit;
+                text-decoration: none;
+                background-color: rgb(240, 240, 240);
+            }
+        }
+    }
+
+    &--bottom {
+        .c-dropdown__menu {
+            top: 100%;
+            margin-top: calc(-1rem + 2px);
+        }
+
+    }
+
+    &--top {
+        .c-dropdown__menu {
+            margin-bottom: 2px;
+            bottom: 100%;
+        }
+    }
+
+    &--right {
+        .c-dropdown__menu {
+            right: -100%;
+            left: auto;
+            top: 0;
+            margin-left: 2px;
+        }
+    }
+
+    &--left {
+        .c-dropdown__menu {
+            right: 100%;
+            left: auto;
+            top: 0;
+            margin-right: 2px;
+
+            @media screen and (max-width: 39em) {
+                right: auto;
+                left: auto;
+                top: 100%;
+                margin-right: 0;
+            }
+        }
+    }
+
+    input[type="checkbox"]:checked~.c-dropdown__menu {
+        opacity: 1;
+        visibility: visible;
+        --min-width: 180px;
+    }
+
+}
+
+.c-caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 2px;
+    vertical-align: middle;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    transform-origin: center;
+    margin-top: -3px;
+    transition: all .25s ease-out 0s;
+
+    .c-button & {
+        margin-left: 10px;
+    }
+
+    &--top {
+        border-bottom: 4px dashed;
+    }
+
+    &--bottom {
+        border-top: 4px dashed;
+    }
+
+    &--right {
+        border-bottom: 4px solid transparent;
+        border-top: 4px solid transparent;
+        border-left: 4px dashed;
+    }
+
+    &--left {
+        border-bottom: 4px solid transparent;
+        border-top: 4px solid transparent;
+        border-right: 4px dashed;
+        margin-right: 10px;
+
+        .c-button & {
+            margin-left: 0;
+        }
+    }
+}

@@ -1,0 +1,139 @@
+$blue: #10487B;
+$red: #b30015;
+$grey: #ddd;
+$green: #84C954;
+$light-grey: #ACBCC8;
+$yellow: rgb(255, 174, 0);
+$black: #1a1a1a;
+$defaultLightenValue: 15%;
+$defaultDarkenValue: 20%;
+form,
+.c-form {
+    position: relative;
+    font-size: 1rem;
+    small {
+        display: block;
+        font-size: 75%;
+    }
+    input {
+        &,
+        &:not([type=submit]),
+        &:not([type=checkbox]),
+        &:not([type=radio]) {
+            padding: 1rem 1.5rem;
+            transition: all .15s ease 0s;
+            border-radius: 0;
+            outline: none;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid $grey;
+            &::-webkit-input-placeholder,
+            &::placeholder {
+                color: darken($grey, $defaultLightenValue);
+            }
+        }
+        &:focus {
+            outline: none;
+            &::-webkit-input-placeholder,
+            &::placeholder {
+                color: darken($grey, 25%);
+            }
+        }
+    }
+    label {
+        display: block;
+        transition: all .15s ease-out 0s;
+    }
+}
+
+.c-form-group {
+    display: block;
+    overflow: hidden;
+    &:not(:last-child) {
+        margin-bottom: 1rem;
+    }
+}
+
+.c-form-check {
+    position: relative;
+    &__input {
+        box-sizing: border-box;
+        padding: 0;
+        position: absolute;
+        left: -9999px;
+    }
+    &__input[type=checkbox] ~ &__label {
+        position: relative;
+        padding-left: 1.6rem;
+        &:before,
+        &:after {
+            position: absolute;
+            top: calc(50% - 8px); left: 0;
+            display: inline-block;
+            height: 20px; width: 20px;
+        }
+        &:before {
+            content: '';
+            border: 2px solid $grey;
+             border-radius: 3px;
+        }
+        &:after {
+            font-size: 110%;
+            height: 12px; width: 12px;
+            content: '\2713\0020';
+            font-family: 'Lucida Sans Unicode', 'Arial Unicode MS', Arial;
+            top: calc(50% - 12px); left: .25rem;
+            color: #09ad7e;
+            opacity: 0;
+            visibility: hidden;
+            transition: all .15s ease-out 0s;
+        }
+    }
+    &__input:checked ~ .c-form-check__label:after {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.c-form-radio {
+    position: relative;
+    display: inline-block;
+    &__input {
+        box-sizing: border-box;
+        padding: 0;
+        position: absolute;
+        left: -9999px;
+    }
+
+    &__label {
+        cursor: pointer;
+        position: relative;
+        padding-left: 1.6rem;
+    }
+
+    &__button {
+        display: inline-block;
+        position: absolute;
+        height: 1.15rem; width: 1.15rem;
+        border: 3px solid $green;
+        border-radius: 50%;
+        top: 50%; left: 0;
+        transform: translateY(-50%);
+        &::after {
+            position: absolute;
+            content: '';
+            display: block;
+            height: .5rem; width: .5rem;
+            background-color: $green;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translateY(-50%) translateX(-50%);
+            opacity: 0;
+            transition: opacity .2s ease 0s;
+        }
+    }
+    &__input:checked ~ &__label > &__button::after {
+        opacity: 1;
+    }
+}

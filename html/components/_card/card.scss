@@ -1,0 +1,66 @@
+.c-card-group {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.c-card {
+    border: 1px solid var(--color-grey-200, #eee);
+    width: 100%;
+    margin-bottom: 2rem;
+    margin-right: 0;
+    transition: all .2s ease-in-out;
+
+    @media screen and (min-width: 50rem) {
+        width: 18em;
+        margin-right: .7rem;
+    }
+
+    &__img {
+        background-color: var(--color-white, #fff);
+        max-width: 100%;
+        width: 100%;
+    }
+
+    &__body {
+        background-color: var(--color-white, #fff);
+        padding: 2rem;
+        text-align: left;
+        font-family: inherit;
+    }
+
+    &__title {
+        font-weight: 700;
+        background-color: var(--color-white, #fff);
+    }
+
+    &__text {
+        font-size: 85%;
+
+        &:last-of-type {
+            margin-bottom: 1rem;
+        }
+    }
+
+    &--rounded {
+        border-radius: .25em;
+
+        .c-card__img--top {
+            border-top-left-radius: calc(.25rem - 1px);
+            border-top-right-radius: calc(.25rem - 1px);
+        }
+    }
+
+    &--shadow {
+        box-shadow: 0 1px 12px 1px rgba(#000, .15);
+
+        &:hover {
+            box-shadow: 0 1px 17px 3px rgba(#000, .15);
+            transform: scale(1.03);
+        }
+    }
+
+    &--row {
+        display: inline-flex;
+        width: 100%;
+    }
+}

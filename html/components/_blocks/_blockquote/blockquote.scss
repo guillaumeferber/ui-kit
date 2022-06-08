@@ -1,0 +1,96 @@
+
+.c-blockquote {
+    position: relative;
+    margin: 0 0 1rem 0;
+    padding: 1rem;
+    border: 1px solid var(--color-grey-700, #616161);
+    border-radius: 0;
+    color: var(--color-black);
+    background-color: var(--color-grey-200, #eeeeee);
+    &__title {
+        margin-left: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    blockquote {
+        margin: 0 0 1.5rem;
+        padding: 0.5625rem 1.25rem 0 1.1875rem;
+        quotes: "“" "”" "‘" "’ ";
+        border-left: none;
+        font-family: inherit;
+        &:before,
+        &:after {
+            color: var(--color-grey-400, #bdbdbd);
+            font-size: 4em;
+            line-height: 0.1em;
+        }
+        &:before {
+            content: open-quote;
+            vertical-align: -0.4em;
+        }
+        &:after {
+            content: close-quote;
+            vertical-align: -0.6em;
+        }
+        &, p {
+            font-size: 1.4rem;
+            line-height: 1.5;
+        }
+
+        & > :last-child {
+            margin-bottom: 0;
+        }
+
+    }
+    &__content {
+        display: inline;
+        color: var(--color-grey-700, #616161);
+        text-rendering: optimizeLegibility;
+    }
+}
+
+.c-blockquote-container {
+    &--right {
+        float: right;
+        width: 35%;
+        margin-left: 2rem;
+        @media screen and (max-width: 500px) {
+            float: none;
+            width: 100%;
+            margin-left: 0;
+        }
+    }
+    &--left {
+        float: left;
+        width: 35%;
+        margin-right: 2rem;
+        @media screen and (max-width: 500px) {
+            float: none;
+            width: 100%;
+            margin-right: 0;
+        }
+    }
+
+}
+.c-blockquote {
+    [data-theme="light"] & {
+        border-color: var(--color-grey-200, #eeeeee);
+        color: var(--color-black, #000);
+        background-color: var(--color-grey-200, #eeeeee);
+        .c-blockquote__content {
+            color: var(--color-black, #000);
+        }
+    }
+    [data-theme="dark"] & {
+        border-color: var(--color-grey-200, #eeeeee);
+        color: var(--color-white, #fff);
+        background-color: var(--color-grey-700, #616161);
+        blockquote:before,
+        blockquote:after {
+            color: var(--color-white, #fff);
+        }
+        .c-blockquote__content {
+            color: var(--color-white, #fff);
+        }
+    }
+}

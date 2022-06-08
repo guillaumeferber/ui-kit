@@ -1,0 +1,104 @@
+[data-toggle="tooltip"] {
+    $dark: #333;
+    $white: #fff;
+    $defaultWidth: 200px;
+    $defaultHeight: 40px;
+    $defaultMargin: 10px;
+    $defaultArrowDimension: 8px;
+    position: relative;
+
+    &::after,
+    &::before {
+        display: none;
+        position: absolute;
+        margin: 10px;
+        transition: all .4s ease-out 0s;
+        z-index: 99;
+    }
+
+    &::after {
+        content: attr(title);
+        padding: 10px;
+        min-height: $defaultHeight;
+        min-width: $defaultWidth;
+        background-color: $dark;
+        color: $white;
+        text-align: center;
+    }
+
+    &::before {
+        content: '';
+        height: 0;
+        width: 0;
+        border: $defaultArrowDimension solid transparent;
+        border-left-color: $dark;
+        border-bottom-color: $dark;
+        transform: rotate(-.125turn);
+    }
+
+    &:hover::after,
+    &:hover::before {
+        display: block;
+    }
+
+    /*
+    * Placements
+    */
+    // top
+    &[data-placement=top] {
+        &::after {
+            left: calc(50% - (#{$defaultWidth}/2) - (#{$defaultMargin}/2));
+            top: calc(-50% - (#{$defaultHeight} + #{$defaultMargin}/1.5));
+        }
+
+        &::before {
+            left: calc(50% - (#{$defaultArrowDimension}*2));
+            top: calc(-50% - (#{$defaultArrowDimension}*2));
+        }
+    }
+
+    // right
+    &[data-placement=right] {
+        &::after {
+            right: calc(-100% - (#{$defaultWidth}/2 - #{$defaultMargin}/2));
+            top: calc(50% - #{$defaultHeight}/2 - #{$defaultMargin});
+        }
+
+        &::before {
+            z-index: 2;
+            transform: rotate(.125turn);
+            right: calc(-50% + (#{$defaultMargin}*2) + #{$defaultArrowDimension}*1.6);
+            top: calc(50% - (#{$defaultArrowDimension}*2.25));
+        }
+    }
+
+    // left
+    &[data-placement=left] {
+        &::after {
+            left: calc(-100% - (#{$defaultWidth}/2 + #{$defaultArrowDimension}/2));
+            top: calc(50% - #{$defaultHeight}/2 - #{$defaultMargin});
+        }
+
+        &::before {
+            z-index: 2;
+            transform: rotate(.625turn);
+            left: calc(-50% + #{$defaultMargin}*2 + #{$defaultArrowDimension});
+            top: calc(50% - (#{$defaultArrowDimension}*2.25));
+        }
+    }
+
+    // bottom
+    &[data-placement=bottom] {
+        &::after {
+            left: calc(50% - #{$defaultWidth}/2 - (#{$defaultMargin}/2));
+            bottom: calc(-50% - (#{$defaultHeight} + #{$defaultMargin}/1.5));
+        }
+
+        &::before {
+            transform: rotate(-.625turn);
+            left: calc(50% - (#{$defaultArrowDimension}*2));
+            bottom: calc(-50% - (#{$defaultArrowDimension}*2));
+        }
+    }
+
+}

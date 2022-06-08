@@ -1,0 +1,62 @@
+.c-label {
+    --background-color: var(--color-white, #fff);
+    --border-color: transparent;
+    --color: var(--black, #000);
+
+    display: inline-block;
+    padding: 3px 5px;
+    text-align: center;
+    border-radius: 0;
+    background-color: var(--background-color);
+    white-space: nowrap;
+    vertical-align: baseline;
+    color: var(--color);
+    border: 1px solid;
+    border-color: var(--border-color);
+    box-sizing: border-box;
+    cursor: default;
+    font-family: var(--font-family-base);
+    font-size: var(--font-size-sm);
+    line-height: 1;
+
+    &--rounded {
+        border-radius: .5em;
+    }
+
+    &--primary {
+        --color: var(--color-white, #fff);
+        --background-color: var(--color-blue-200, #448aff);
+    }
+
+    &--secondary {
+        --background-color: var(--color-white, #fff);
+        --border-color: var(--color-grey-400, #bdbdbd);
+        --color: inherit;
+    }
+
+    &--success {
+        --background-color: var(--color-green-400, #00e676);
+    }
+
+    &--danger {
+        --background-color: var(--color-red-400, #ff1744);
+    }
+
+    &--info {
+        --background-color: var(--color-grey-400, #bdbdbd);
+    }
+
+    &--warning {
+        --background-color: var(--color-yellow-400, #ffea00);
+    }
+
+    &--light {
+        --background-color: var(--color-grey-200, #eeeeee);
+        --color: var(--color-grey-700, #616161);
+    }
+
+    &--dark {
+        --background-color: var(--black, #000);
+        --color: var(--color-white, #fff);
+    }
+}

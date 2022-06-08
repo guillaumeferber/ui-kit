@@ -1,0 +1,52 @@
+:root {
+    /* Light theme */
+    --c-light-text: #333;
+    --c-light-background: #fff;
+    --c-light-focus: deepskyblue;
+    --c-light-interactive: mediumvioletred;
+
+    /* Dark theme */
+    --c-dark-text: #fff;
+    --c-dark-background: #333;
+    --c-dark-focus: deeppink;
+    --c-dark-interactive: palegreen;
+}
+
+[data-theme] {
+    /* Make the light theme the default */
+    --c-text: var(--c-light-text);
+    --c-background: var(--c-light-background);
+    --c-focus: var(--c-light-focus);
+    --c-interactive: var(--c-light-interactive);
+}
+
+[data-theme="dark"] {
+    /* Override the default theme */
+    --c-text: var(--c-dark-text);
+    --c-background: var(--c-dark-background);
+    --c-focus: var(--c-dark-focus);
+    --c-interactive: var(--c-dark-interactive);
+}
+
+[data-theme] {
+    .c-switch input[type=checkbox] {
+        & ~ .c-switch__check { background-color: var(--c-light-focus); }
+        &:checked ~ .c-switch__check { background-color: var(--c-dark-focus); }
+    }
+}
+
+.sr-only {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    white-space: nowrap; /* 1. */
+}
+
+.box {
+    padding: 40px 10px;
+}

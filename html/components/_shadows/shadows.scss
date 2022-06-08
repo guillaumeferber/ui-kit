@@ -1,0 +1,44 @@
+// for the demo
+.c-box {
+    display: inline-block;
+    height: 15rem;
+    margin-bottom: 4rem;
+    min-width: 20%;
+
+    &__item {
+        background-color: var(--color-white, #fff);
+        height: 100%;
+        width: 100%;
+        border-radius: 1.6rem;
+    }
+}
+
+// default
+
+.u-shadow {
+
+    &,
+    &--default {
+        box-shadow: 0 2px 4px 0 scale-color(#000, $alpha: -50%),
+            0 2px 3px 0 scale-color(#000, $alpha: -75%);
+    }
+
+    &--soft {
+        box-shadow: 0 8px 24px 0 scale-color(#000, $alpha: -85%),
+            0 4px 16px 0 scale-color(#000, $alpha: -95%);
+    }
+
+    &--natural {
+        box-shadow: 0 16px 40px 0 scale-color(#7090B0, $alpha: -80%),
+            0 8px 26px 0 scale-color(#7090B0, $alpha: -90%);
+    }
+
+    &--smooth {
+        box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+            0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+            0 12.5px 10px rgba(0, 0, 0, 0.06),
+            0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+            0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+            0 100px 80px rgba(0, 0, 0, 0.12);
+    }
+}

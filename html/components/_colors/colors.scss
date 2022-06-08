@@ -1,0 +1,78 @@
+.canvas {
+    display: inline-flex;
+    width: 100px; height: 100px;
+    margin: 0;
+    &,
+    &:after,
+    &:before {
+        box-sizing: content-box;
+    }
+    &_1 {
+        background-color: rgba(34, 124, 33, .15);
+    }
+    &_2 {
+        background-color: hsl(14, 76%, 55%);
+        &_comp {
+            position: relative;
+            background-color: hsl(194, 76%, 55%); // == to invert()
+            &:after {
+                display: block;
+                padding-top: 35px;
+                font: 200 .75rem/1 Arial;
+                text-align: center;
+                content: 'complement of #e35e35';
+            }
+            &_adj {
+                &_1 {
+                    background-color: rgba(#e35e35, .5);
+                    &:after {
+                        display: block;
+                        padding-top: 35px;
+                        font: 200 .75rem/1 Arial;
+                        text-align: center; color: #fff;
+                        content: 'complement adjacent of #e35e35';
+                    }
+                }
+                &_2 {
+                    background-color: adjust-hue(hsl(14, 76%, 55%), -30deg);
+                    &:after {
+                        display: block;
+                        padding-top: 35px;
+                        font: 200 .75rem/1 Arial;
+                        text-align: center;
+                        content: 'complement adjacent of #e35e35';
+                    }
+                }
+            }
+        }
+    }
+    &_3 {
+        background-color: #f0a58f;
+        &_comp {
+            position: relative;
+            background-color: hsl(194, 76%, 75%);
+            &:after {
+                display: block;
+                padding-top: 35px;
+                font: 200 .75rem/1 Arial;
+                text-align: center;
+                content: 'complement of #f0a58f';
+            }
+        }
+    }
+    &_4 {
+        background-color: hsl(13, 76%, 95%);
+        &_comp {
+            position: relative;
+            background-color: hsl(193, 76%, 95%);
+            &:after {
+                display: block;
+                padding-top: 35px;
+                font: 200 .75rem/1 Arial;
+                text-align: center;
+                content: 'complement of #fcede9';
+            }
+        }
+    }
+
+}

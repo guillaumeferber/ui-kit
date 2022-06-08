@@ -1,0 +1,76 @@
+.c-badge {
+    --background-color: var(--color-white, #fff);
+    --color: var(--color-black, #000);
+    --font-weight: 400;
+    --border-color: transparent;
+    position: absolute;
+    content: '';
+    display: inline-block;
+    top: -8px;
+    right: 0;
+    padding: .3em .6em;
+    text-align: center;
+    background: var(--background-color);
+    z-index: 10;
+    color: var(--color);
+    border-radius: 2.4em;
+    font-size: var(--font-size-sm, 1.1rem);
+    line-height: 1.1;
+    font-weight: var(--font-weight);
+    border: 1px solid var(--border-color);
+
+    &--large {
+        font-size: 2rem;
+    }
+
+    &--float {
+        right: -25%;
+        box-shadow: -1px 1px 3px -1px var(--color-black, #000);
+    }
+
+    &--primary {
+        --background-color: var(--color-blue-200, #448aff);
+        --color: var(--color-white, #fff);
+    }
+
+    &--secondary {
+        --background-color: var(--color-white, #fff);
+        --color: inherit;
+        --border-color: var(--color-grey-400, #bdbdbd);
+    }
+
+    &--danger {
+        --background-color: var(--color-red-400, #ff1744);
+        --color: var(--color-white, #fff);
+    }
+
+    &--success {
+        --background-color: var(--color-green-400, #00e676);
+    }
+
+    &--warning {
+        --background-color: var(--color-yellow-400, #ffea00);
+    }
+
+    &--info {
+        --background-color: var(--color-grey-400, #bdbdbd);
+    }
+
+    &--light {
+        --background-color: var(--color-grey-200, #eeeeee);
+        --color: var(--color-grey-700, #616161);
+        --font-weight: 400;
+    }
+
+    &--dark {
+        --background-color: var(--black, #000);
+        --color: var(--color-white, #fff);
+    }
+
+    .c-button &:not(.c-badge--float),
+    button &:not(.c-badge--float) {
+        position: relative;
+        top: 0;
+        --font-weight: initial;
+    }
+}

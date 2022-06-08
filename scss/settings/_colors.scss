@@ -1,0 +1,35 @@
+///* ========================================================================
+//   #COLORS
+//   ======================================================================== */
+
+// Map of Material colors.
+$colors: () !default;
+$colors: map-merge(('white': #fff,
+        'black': #000,
+        'grey-200': #eeeeee,
+        'grey-300': #e0e0e0,
+        'grey-400': #bdbdbd,
+        'grey-700': #616161,
+        'red-200': #ff5252,
+        'red-400': #ff1744,
+        'red-700': #e30425,
+        'pink-200': #ff4081,
+        'pink-400': #f50057,
+        'pink-700': #c51162,
+        'indigo-200': #536dfe,
+        'indigo-400': #3d5afe,
+        'indigo-700': #304ffe,
+        'green-200': #69f0ae,
+        'green-400': #00e676,
+        'green-700': #00c853,
+        'orange-200': #ffab40,
+        'orange-400': #ff9100,
+        'orange-700': #ff6d00,
+        'yellow-200': #ffff00,
+        'yellow-400': #ffea00,
+        'yellow-700': #ffd600,
+        'blue-25': #F4F8FF,
+        'blue-200': #448aff,
+        'blue-400': #2979ff,
+        'blue-700': #2962ff),
+    $colors);

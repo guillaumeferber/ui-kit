@@ -1,0 +1,46 @@
+.c-hero {
+    display: block;
+    margin-bottom: 2rem;
+    background-color:  transparent;
+    position: relative;
+    &__lead,
+    &__title,
+    &__subtitle,
+    &__body {
+        padding: 1rem 2rem;
+    }
+    &__lead { font-size: 120%; }
+    &__subtitle {
+        margin-top: -1rem;
+        padding-bottom: 2rem;
+        font-size: 90%;
+     }
+    &__body {
+        p:not(:last-child) {
+            box-sizing: content-box;
+            margin-bottom: 1rem;
+        }
+    }
+
+    &__background {
+        position: absolute;
+        top: 0; left: 0;
+        height: 100%; width: 100%;
+        z-index: -1;
+        opacity: .2;
+        overflow: hidden;
+        img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background-size: cover;
+        }
+    }
+}
+
+@media (min-width: 576px) {
+    .c-hero {
+        padding: 4rem 2rem;
+    }
+}

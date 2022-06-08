@@ -1,0 +1,80 @@
+.c-button-group {
+    position: relative;
+    display: flex;
+    flex-flow: row nowrap;
+    overflow: hidden;
+    box-sizing: border-box;
+    width: auto;
+    margin-bottom: 1rem;
+
+    &__radio {
+        input[type=radio] {
+            position: absolute;
+            left: -9999px;
+            appearance: none;
+            visibility: hidden;
+            opacity: 0;
+
+            &:checked~label {
+                background-color: var(--color-blue-400, #2979ff);
+                color: var(--color-white, #fff);
+            }
+        }
+
+        label {
+            display: inline-block;
+            background-color: var(--color-white, #fff);
+            padding: 8px 12px;
+            text-align: center;
+            color: var(--color-grey-700, #616161);
+            margin: 0;
+            transition: all .25s ease-in;
+            border: 1px solid transparent;
+            border-top-color: var(--color-blue-400, #2979ff);;
+            border-bottom-color: var(--color-blue-400, #2979ff);;
+            border-radius: 0;
+            font-size: 1.4rem;
+
+            &:hover {
+                background-color: var(--color-blue-200, #448aff);
+                color: var(--color-white, #fff);
+            }
+        }
+
+        &:first-child label {
+            border-left-color: var(--color-blue-400, #2979ff);
+        }
+
+        &:not(:last-child) {
+            label {
+                border-left-color: var(--color-blue-400, #2979ff);
+                border-right-color: var(--color-blue-400, #2979ff);
+            }
+
+            &+& label {
+                border-left-width: 0;
+            }
+        }
+
+        &:last-child label {
+            border-right-color: var(--color-blue-400, #2979ff);
+            border-left-width: 0;
+        }
+    }
+
+    &--rounded .c-button-group__radio {
+        &:first-child label {
+            border-radius: 4px 0 0 4px;
+        }
+
+        &:last-child label {
+            border-radius: 0 4px 4px 0;
+        }
+    }
+
+    &--noborder .c-button-group__radio {
+        label {
+            border-width: 0;
+        }
+    }
+}

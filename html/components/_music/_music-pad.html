@@ -1,0 +1,157 @@
+<div class="c-music-pad-group js-music"></div>
+<div class="c-close-button"><a href="/">&times;</a></div>
+<script>
+    var MusicPadModule = (function(win) {
+        'use strict';
+        var _config = {};
+        function _addConfig() {
+            _config = {
+                doc: win.document,
+                selector: 'data-color',
+                colorList: 'abcdef0123456789'.split(''),
+                grid: 12,
+                colorSoundList: [
+                    { freq: 349.2, color: [ 0, 100, 32 ] },
+                    { freq: 370, color: [ 0, 100, 45 ] },
+                    { freq: 392, color: [ 0, 100, 70 ] },
+                    { freq: 415.3, color: [ 0, 100, 93 ] },
+                    { freq: 440, color: [ 23, 100, 100 ] },
+                    { freq: 466.2, color: [ 56, 100, 100 ] },
+                    { freq: 493.9, color: [ 84, 100, 100 ] },
+                    { freq: 523.2, color: [ 111, 100, 100 ] },
+                    { freq: 554.4, color: [ 175, 100, 100 ] },
+                    { freq: 587.3, color: [ 211, 100, 100 ] },
+                    { freq: 622.2, color: [ 241, 100, 100 ] },
+                    { freq: 659.3, color: [ 258, 100, 92 ] },
+                    { freq: 698.5, color: [ 273, 100, 62 ] }
+                ],
+                reg: /(rgb\()?(\))?/gmi
+            }
+        }
+
+        function _getClosestColor(goal) {
+            // get only hue in array
+            var colorList = _config.colorSoundList.map(function(list, idx) {
+                return list.color[0];
+            });
+            // get closest value to clicked element color hue
+            var closest = colorList.reduce(function(a, b) {
+                return Math.abs(b - goal[0]) < Math.abs(a - goal[0]) ? b : a;
+            });
+            // get object in colorSoundList array
+            return _config.colorSoundList.find(function(item) {
+                return item.color[0] === closest;
+            })
+        }
+
+        function init(iterations) {
+            _addConfig();
+            _initGrid(iterations);
+            _addEventListeners();
+        }
+
+        function _addEventListeners() {
+            var selectorList = _getSelectors();
+            Object.keys(selectorList).map(function(selectorIdx) {
+                selectorList[selectorIdx].addEventListener('click', _onElementClick, false);
+            });
+        }
+
+        function _onElementClick(e) {
+            _generateSound(_getColor(e));
+            _clickEffect(e);
+        }
+
+        function _clickEffect(e) {
+            Array.from(_config.doc.querySelectorAll('.js-click-effect')).map(function(item){
+                item.parentNode.removeChild(item);
+            });
+            var element = e.target;
+            element.style.position = 'relative';
+            var effectElement = _config.doc.createElement('span');
+            effectElement.classList.add('js-click-effect', 'c-music-pad__effect');
+            effectElement.style.top = (e.clientY - element.offsetTop - 20) + 'px';
+            effectElement.style.left = (e.clientX - element.offsetLeft - 20) + 'px';
+            element.appendChild(effectElement);
+        }
+
+        function _generateSound(color) {
+            var context = new AudioContext();
+            var o = context.createOscillator();
+            var  g = context.createGain();
+            g.gain.exponentialRampToValueAtTime(
+                0.00001, context.currentTime + .8
+            );
+            o.connect(g);
+            g.connect(context.destination);
+            o.type = "sine";
+            o.frequency.value = color.freq;
+            o.start(0);
+        }
+
+        function _getSelectors() {
+            return _config.doc.querySelectorAll('[' + _config.selector + ']');
+        }
+
+        function _getElementComputedColor(item) {
+            return win.getComputedStyle(item, null).getPropertyValue('background-color');
+        }
+
+        function _getColor(item) {
+            var color = _getElementComputedColor(item.target).replace(_config.reg, '').split(',').map(function(item) { return +item; });
+            var hsl = _rgbToHsl(color);
+            return _getClosestColor(hsl);
+        }
+
+
+        function _generateHexCodeColor() {
+            var output = '#', i = 0;
+            while(i < 6) {
+                output += _config.colorList[~~(Math.random() * _config.colorList.length)];
+                i++;
+            }
+            return output;
+        }
+
+        function _rgbToHsl([r, g, b]) {
+            r /= 255, g /= 255, b /= 255;
+            var max = Math.max(r, g, b), min = Math.min(r, g, b);
+            var h, s, l = (max + min) / 2;
+            var d = max - min; // delta
+
+            if (max === min) {
+                h = s = 0; // achromatic
+            } else {
+                s = l > 0.5 ? d / (1 - (2*l-1)) : d / (max + min);
+                s = Math.round(s * 1000) / 10; // round
+                l = Math.round(l * 1000) / 10; // round
+                switch (max) {
+                    case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                    case g: h = (b - r) / d + 2; break;
+                    case b: h =  (r - g) / d + 4; break;
+                }
+                h = Math.round((h*60) * 10) / 10; // convert to deg & round
+            }
+            return [ h, s, l ];
+        }
+
+        function _initGrid(iterations) {
+            var group = _config.doc.querySelector('.js-music');
+            for(var i = 0; i < iterations; i++) {
+                var element = _config.doc.createElement('div');
+                element.classList.add('c-music-pad');
+                element.style.width = (100 / (iterations >= _config.grid ? _config.grid : iterations)) + 'vw';
+                element.dataset.color = _generateHexCodeColor();
+                element.style.background = element.dataset.color;
+                group.appendChild(element);
+            }
+        }
+
+        return {
+            init: init
+        }
+    })(window);
+    var musicPlayer = MusicPadModule;
+    musicPlayer.init(55);
+
+</script>

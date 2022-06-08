@@ -1,0 +1,99 @@
+/* ==========================================================================
+   #SHARED
+   ========================================================================== */
+
+/* Declarative rules
+   ========================================================================== */
+
+/**
+ * Add `min-width: 0` and `min-height: 0` to all elements
+ */
+
+*,
+*::before,
+*::after {
+    min-width: 0;
+    min-height: 0;
+}
+
+/**
+  * Always declare margins in the same direction.
+  */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+p,
+blockquote,
+pre,
+address,
+ol,
+ul,
+dl,
+fieldset,
+table,
+figure {
+    @include vertical-margins;
+}
+
+/**
+  * Consistent indentation for lists.
+  */
+
+ol,
+ul,
+dd {
+    padding-left: var(--spacer-base);
+}
+
+/**
+  * Fluid media elements for responsive purposes.
+  */
+
+object,
+embed,
+img,
+svg,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+iframe,
+audio {
+    max-width: 100%;
+}
+
+/**
+  * Change the alignment on media elements.
+  */
+
+iframe,
+canvas,
+img,
+svg,
+video,
+audio {
+    vertical-align: middle;
+}
+
+/**
+  * Change the cursor with CSS for better user experience.
+  */
+
+[aria-busy='true'] {
+    cursor: progress;
+}
+
+[aria-controls] {
+    cursor: pointer;
+}
+
+[aria-disabled='true'],
+[disabled] {
+    cursor: not-allowed;
+}

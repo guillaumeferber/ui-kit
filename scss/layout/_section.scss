@@ -1,0 +1,9 @@
+section,
+.c-section {
+    position: relative;
+    margin-bottom: 3rem;
+
+    &--light {
+        background-color: var(--grey-100, #F5F5F5);
+    }
+}
