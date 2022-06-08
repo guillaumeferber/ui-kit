@@ -1,6 +1,6 @@
 {
 	"name": "@guillaumeferber/ui-kit",
-	"version": "0.0.21",
+	"version": "0.0.22",
 	"description": "UIKit is a lightweight and flexible CSS front-end framework based on ITCSS architecture and built with Sass",
 	"repository": {
 		"type": "git",
